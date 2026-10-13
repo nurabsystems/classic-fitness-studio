@@ -1,0 +1,1220 @@
+/* ---------- CSS Reset + Global Box-Sizing ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Base Document ---------- */
+
+#hero,
+#about,
+#classes,
+#trainers,
+#pricing,
+#contact,
+#thank-you {
+  scroll-margin-top: 90px;
+}
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #111;
+  background-color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---------- Media Defaults ---------- */
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Form Elements ---------- */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* ---------- Lists ---------- */
+ul,
+ol {
+  list-style: none;
+}
+
+/* ============================================================
+        CSS Variables
+   ============================================================ */
+:root {
+  /* Colors */
+  --accent: #00e676; /* Pulse green — energetic */
+  --accent-dark: #00b85c; /* Hover state */
+  --dark: #0d1117; /* Background */
+  --dark-soft: #161b22; /* Card background */
+  --light: #f5f7fa; /* Text on dark */
+  --neutral: #8b949e; /* Muted text */
+  --border: #30363d; /* Subtle borders */
+
+  /* Spacing scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  /* Typography */
+  --font-base: "Inter", sans-serif;
+  --font-size-base: 1rem;
+  --line-height-base: 1.6;
+
+  /* Layout */
+  --content-width: 1100px;
+  --radius: 12px;
+  --transition: 0.3s ease;
+}
+
+/* ============================================================
+   SETTINGS MENU — CSS-only dropdown
+   ============================================================ */
+.settings-menu {
+  position: relative;
+  margin-left: auto;
+  margin-right: var(--space-sm);
+}
+
+.settings-menu summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.4rem;
+  color: var(--neutral);
+  border-radius: 8px;
+  transition:
+    color var(--transition),
+    background-color var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+.settings-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-menu summary:hover,
+.settings-menu[open] summary {
+  color: var(--accent);
+  background-color: rgba(0, 230, 118, 0.1);
+}
+
+.settings-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: 260px;
+  background-color: var(--dark-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  animation: fadeInUp 0.25s ease;
+}
+
+.settings-panel h4 {
+  color: var(--light);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-group {
+  margin-bottom: var(--space-md);
+}
+.settings-group:last-child {
+  margin-bottom: 0;
+}
+
+.settings-label {
+  color: var(--neutral);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.25rem;
+}
+
+.settings-value {
+  color: var(--light);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.settings-badge {
+  display: inline-block;
+  background-color: var(--accent);
+  color: var(--dark);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  margin-left: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.settings-note {
+  color: var(--neutral);
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+/* Close on outside click via :focus-within */
+.settings-menu:not([open]) .settings-panel {
+  display: none;
+}
+
+/* ---------- Base Body with Dark Theme ---------- */
+body {
+  font-family: var(--font-base);
+  color: var(--light);
+  background-color: var(--dark);
+  line-height: var(--line-height-base);
+}
+
+/* ---------- Section Base ---------- */
+.section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(5rem, 9vw, 8rem) clamp(1.25rem, 5vw, 2.5rem);
+  position: relative;
+}
+
+/* ---------- Section Background Alternation ---------- */
+.section:nth-of-type(even) {
+  background-color: rgba(22, 27, 34, 0.4);
+}
+
+/* ---------- Anchor Scroll Offset (sticky nav fix) ---------- */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.section-header h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-xs);
+}
+
+.section-subtitle {
+  color: var(--neutral);
+  font-size: 1.05rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition:
+    transform var(--transition),
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--dark);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  background-color: var(--accent);
+  color: var(--dark);
+  transform: translateY(-2px);
+}
+
+/* ---------- Accessibility Focus ---------- */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   HEADER + NAVIGATION — Flexbox
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  width: min(var(--content-width), 100% - 2rem);
+  margin-inline: auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--light);
+  transition: color var(--transition);
+}
+
+.logo:hover {
+  color: var(--accent);
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.nav-list a {
+  color: var(--light);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.35rem 0;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.nav-list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width var(--transition);
+}
+
+.nav-list a:hover,
+.nav-list a:focus-visible {
+  color: var(--accent);
+}
+
+.nav-list a:hover::after,
+.nav-list a:focus-visible::after {
+  width: 100%;
+}
+
+/* Desktop: nav-list always visible, toggle links hidden */
+.nav-toggle-open,
+.nav-toggle-close {
+  display: none;
+}
+
+/* ============================================================
+   HERO SECTION — Flexbox
+   ============================================================ */
+
+@supports not (height: 100svh) {
+  .hero {
+    min-height: calc(100vh - 70px);
+  }
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  /*min-height: 80vh;*/
+  min-height: calc(100svh - 70px); /* full viewport MINUS nav height */
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.35);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 17, 23, 0.6) 0%,
+    rgba(13, 17, 23, 0.9) 100%
+  );
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  max-width: 720px;
+}
+
+.hero h1 {
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--light);
+}
+
+.hero .tagline {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--light);
+  opacity: 0.9;
+  max-width: 600px;
+}
+
+.hero .btn {
+  margin-top: var(--space-xs);
+}
+
+/* ============================================================
+   ABOUT SECTION — Two-column SaaS layout
+   ============================================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+/* --- Left: image --- */
+.about-media {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  aspect-ratio: 4 / 5;
+}
+
+.about-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.about-media:hover img {
+  transform: scale(1.04);
+}
+
+/* Optional accent frame behind the image */
+.about-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  box-shadow: inset 0 0 0 1px rgba(0, 230, 118, 0.25);
+  pointer-events: none;
+}
+
+/* --- Right: content --- */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.eyebrow {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.25rem;
+}
+
+.about-content h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--light);
+}
+
+.accent-text {
+  color: var(--accent);
+}
+
+.about-lead {
+  color: var(--neutral);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--dark-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.about-highlights li {
+  color: var(--light);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.about-highlights li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.about-highlights strong {
+  color: var(--accent);
+}
+
+.about-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+/* ============================================================
+   CLASS SCHEDULE
+   ============================================================ */
+.schedule-table {
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+  border-collapse: collapse;
+  background-color: var(--dark-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.schedule-table thead {
+  background-color: var(--accent);
+  color: var(--dark);
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.schedule-table th {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.schedule-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--transition);
+}
+
+.schedule-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.schedule-table tbody tr:hover {
+  background-color: rgba(0, 230, 118, 0.05);
+}
+
+.schedule-table td {
+  color: var(--light);
+}
+
+/* ============================================================
+   TRAINER CARDS — CSS Grid
+   ============================================================ */
+
+/* ---------- Trainer Grid — Center Orphan Card ---------- */
+.trainer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: var(--space-md);
+  max-width: 1000px;
+  margin-inline: auto;
+  justify-items: center;
+}
+
+.trainer-card {
+  background-color: var(--dark-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  text-align: center;
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.trainer-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 32px rgba(0, 230, 118, 0.15);
+}
+
+.trainer-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--space-sm);
+  border: 3px solid var(--accent);
+}
+
+.trainer-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--light);
+  margin-bottom: 0.25rem;
+}
+
+.trainer-specialty {
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.trainer-card p {
+  color: var(--neutral);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* ============================================================
+   PRICING CARDS — Flexbox
+   ============================================================ */
+.pricing-parent-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: var(--space-md);
+  max-width: 1050px;
+  margin-inline: auto;
+}
+
+.pricing-card {
+  flex: 1 1 280px;
+  max-width: 340px;
+  background-color: var(--dark-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  position: relative;
+  transition:
+    transform var(--transition),
+    border-color var(--transition);
+}
+
+.pricing-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.pricing-card--featured {
+  border-color: var(--accent);
+  border-width: 2px;
+  transform: scale(1.03);
+  box-shadow: 0 15px 40px rgba(0, 230, 118, 0.2);
+}
+
+.pricing-card--featured:hover {
+  transform: scale(1.03) translateY(-6px);
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  /* left: 50%;*/
+  transform: translateX(50%);
+  background-color: var(--accent);
+  color: var(--dark);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 99px;
+}
+
+.pricing-card h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--light);
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: var(--space-xs);
+}
+
+.price .amount {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.price .period {
+  font-size: 0.95rem;
+  color: var(--neutral);
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-block: var(--space-sm);
+  flex-grow: 1;
+}
+
+.features li {
+  color: var(--light);
+  font-size: 0.95rem;
+  padding-left: 1.5rem;
+  position: relative;
+  text-align: left;
+}
+
+.features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.pricing-card .btn {
+  margin-top: auto;
+}
+
+/* ============================================================
+   CONTACT SECTION — Form
+   ============================================================ */
+.contact-form {
+  max-width: 620px;
+  margin-inline: auto;
+  background-color: var(--dark-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--light);
+  letter-spacing: 0.01em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--dark);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--light);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--neutral);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.2);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238B949E' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.contact-form .btn {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+}
+
+/* ============================================================
+   CONTACT SECTION — reduce empty space
+   ============================================================ */
+#contact.section {
+  padding-top: clamp(3rem, 5vw, 4rem);
+  padding-bottom: clamp(3rem, 5vw, 4rem);
+}
+
+#contact .section-header {
+  margin-bottom: var(--space-md);
+}
+
+/* ============================================================
+   CONTACT SECTION — Form + Thank-you toggle
+   ============================================================ */
+
+/* Hide thank-you card by default */
+.thank-you-card {
+  display: none;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+  background-color: var(--dark-soft);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 230, 118, 0.15);
+  animation: fadeInUp 0.5s ease;
+}
+
+/* Show thank-you card when targeted */
+.thank-you-card:target {
+  display: block;
+}
+
+/* === BULLETPROOF: hide form when thank-you is targeted === */
+/* Uses :has() — supported in all modern browsers */
+section#contact:has(.thank-you-card:target) .contact-view {
+  display: none;
+}
+
+/* Fallback for browsers without :has() — sibling selector */
+.thank-you-card:target ~ .contact-view {
+  display: none;
+}
+
+/* Icon */
+.thank-you-icon {
+  color: var(--accent);
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+}
+
+.thank-you-card h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--light);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.02em;
+}
+
+.thank-you-card p {
+  color: var(--neutral);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.thank-you-card {
+  /* ...existing rules... */
+  scroll-margin-top: 90px; /* clear the sticky nav */
+}
+
+/* Ensure the contact section handles the absolute/hidden swap smoothly on mobile */
+#contact.section {
+  position: relative;
+  scroll-margin-top: 90px;
+}
+
+/* Fix mobile scroll positioning when #thank-you is targeted */
+#thank-you:target {
+  display: block;
+  scroll-margin-top: 90px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background-color: var(--dark-soft);
+  border-top: 1px solid var(--border);
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  max-width: var(--content-width);
+  margin-inline: auto;
+}
+
+.footer-brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.footer-tagline {
+  color: var(--neutral);
+  font-size: 0.9rem;
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.footer-nav a {
+  color: var(--light);
+  font-size: 0.9rem;
+  transition: color var(--transition);
+}
+
+.footer-nav a:hover {
+  color: var(--accent);
+}
+
+.copyright {
+  color: var(--neutral);
+  font-size: 0.8rem;
+  margin-top: var(--space-sm);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .main-nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 0;
+    position: relative;
+  }
+
+  /* Show hamburger open button */
+  .nav-toggle-open {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+
+  .nav-toggle-open span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background-color: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* Menu panel hidden by default */
+  .nav-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background-color: var(--dark-soft);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    width: 100%;
+    z-index: 100;
+  }
+
+  /* When #nav is targeted, expand the menu */
+  .nav-list:target {
+    max-height: 500px;
+  }
+
+  .nav-list li {
+    width: 100%;
+  }
+
+  .nav-list a {
+    display: block;
+    width: 100%;
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+  }
+
+  .nav-list a::after {
+    display: none;
+  }
+}
+
+/* Force single column when width is tight */
+@media (max-width: 1100px) and (min-width: 601px) {
+  .trainer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Center the 3rd (odd) card */
+  .trainer-grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 440px;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-highlights {
+    padding: var(--space-sm);
+  }
+}
+
+/* --- Responsive: stack on tablet and below --- */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .about-media {
+    aspect-ratio: 16 / 9;
+    max-width: 500px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .about-ctas .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ============================================================
+   SCROLL OFFSET FOR ALL ANCHOR TARGETS
+   ============================================================ */
+#hero,
+#about,
+#classes,
+#trainers,
+#pricing,
+#contact,
+#thank-you {
+  scroll-margin-top: 100px; /* clears the sticky nav */
+}
+
+/* Specific fix: thank-you card needs extra offset so it lands fully in view */
+#thank-you {
+  scroll-margin-top: 90px;
+  scroll-margin-bottom: 40px;
+}
+
+/* ============================================================
+   RESPONSIVE TABLE — Card layout on phones
+   ============================================================ */
+
+/* On phone (≤ 600px), transform the table into stacked cards */
+@media (max-width: 600px) {
+  /* Hide the table header row */
+  .schedule-table thead {
+    position: absolute;
+    left: -9999px;
+    /* Also visually hidden but screen-reader accessible */
+  }
+
+  /* Make the table, tbody, and rows behave as blocks */
+  .schedule-table,
+  .schedule-table tbody,
+  .schedule-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  /* Each row becomes a card */
+  .schedule-table tr {
+    background-color: var(--dark-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-sm);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Each cell becomes a flex row with label + value */
+  .schedule-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+    text-align: right;
+  }
+
+  .schedule-table td:last-child {
+    border-bottom: none;
+  }
+
+  /* The label — pulled from data-label */
+  .schedule-table td::before {
+    content: attr(data-label);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-align: left;
+    margin-right: var(--space-sm);
+    flex-shrink: 0;
+  }
+}
